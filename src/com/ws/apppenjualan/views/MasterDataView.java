@@ -2,20 +2,24 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ws.apppenjualan;
+package com.ws.apppenjualan.views;
 
+import com.ws.apppenjualan.Main;
 import java.awt.CardLayout;
+import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author WS
  */
-public class MasterData extends javax.swing.JPanel {
+public class MasterDataView extends javax.swing.JPanel {
 
     /**
-     * Creates new form MasterData
+     * Creates new form MasterDataView
      */
-    public MasterData() {
+    public MasterDataView() {
         initComponents();
     }
 
@@ -154,11 +158,10 @@ public class MasterData extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         panelFormMasterData.removeAll();
-        panelFormMasterData.add(new Supplier());
-        CardLayout cl = (CardLayout)panelFormMasterData.getLayout();
+        panelFormMasterData.add(new SupplierView());
+        CardLayout cl = (CardLayout) panelFormMasterData.getLayout();
         cl.next(panelFormMasterData);
     }//GEN-LAST:event_jButton1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

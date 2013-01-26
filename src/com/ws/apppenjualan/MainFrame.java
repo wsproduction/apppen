@@ -5,8 +5,15 @@
 package com.ws.apppenjualan;
 
 import com.ws.apppenjualan.config.LookAndFeel;
+import com.ws.apppenjualan.views.MasterDataView;
+import com.ws.apppenjualan.views.TransaksiView;
 import java.awt.CardLayout;
-import javax.swing.JButton;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import java.text.Normalizer.Form;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -15,7 +22,7 @@ import javax.swing.JOptionPane;
  * @author WS
  */
 public class MainFrame extends javax.swing.JFrame {
-        
+
     /**
      * Creates new form MainFrame
      */
@@ -23,6 +30,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(this);
         this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        super.setIconImage(new LookAndFeel().getIcon());
     }
 
     /**
@@ -48,6 +56,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Aplikasi Penjualan - Toko Purwatama Karya Abadi");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -126,7 +139,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(296, Short.MAX_VALUE))
+                .addContainerGap(346, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,28 +204,31 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         panelForm.removeAll();
-        panelForm.add(new MasterData());
-        CardLayout cl = (CardLayout)panelForm.getLayout();
+        panelForm.add(new MasterDataView());
+        CardLayout cl = (CardLayout) panelForm.getLayout();
         cl.next(panelForm);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         panelForm.removeAll();
-        panelForm.add(new Transaksi());
-        CardLayout cl = (CardLayout)panelForm.getLayout();
+        panelForm.add(new TransaksiView());
+        CardLayout cl = (CardLayout) panelForm.getLayout();
         cl.next(panelForm);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        if (JOptionPane.showConfirmDialog(null, "Anda yakin keluar?","Yakin?",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+        if (JOptionPane.showConfirmDialog(null, "Anda yakin keluar?", "Yakin?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        //ImageIcon gambar = new ImageIcon("com/ws/apppenjualan/config/images/basket.png");
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -222,7 +238,7 @@ public class MainFrame extends javax.swing.JFrame {
         LookAndFeel laf = new LookAndFeel();
         laf.Apply();
         MainFrame.setDefaultLookAndFeelDecorated(true);
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override

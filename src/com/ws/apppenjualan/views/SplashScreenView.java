@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ws.apppenjualan;
+package com.ws.apppenjualan.views;
 
 import javax.swing.JProgressBar;
 
@@ -10,12 +10,12 @@ import javax.swing.JProgressBar;
  *
  * @author WS
  */
-public class SplashScreen extends javax.swing.JDialog {
+public class SplashScreenView extends javax.swing.JDialog {
 
     /**
-     * Creates new form SplashScreen
+     * Creates new form SplashScreenView
      */
-    public SplashScreen() {
+    public SplashScreenView() {
         initComponents();
         this.setAlwaysOnTop(true);
         this.setLocationRelativeTo(this);

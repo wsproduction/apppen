@@ -26,7 +26,14 @@ public class Main {
             }
         }
         ss.dispose();
-        * */
-        MainFrame.main(args);
+        
+        DatabaseConnection dc = DatabaseConnection.getInstance();
+        try {
+            Connection c = dc.getConnection();
+        }catch (Exception e) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
+        }* */
+        
+        MainFrame.main(args);   
     }
 }

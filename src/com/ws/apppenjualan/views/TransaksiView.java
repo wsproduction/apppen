@@ -2,18 +2,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ws.apppenjualan;
+package com.ws.apppenjualan.views;
 
 /**
  *
  * @author WS
  */
-public class Transaksi extends javax.swing.JPanel {
+public class TransaksiView extends javax.swing.JPanel {
 
     /**
-     * Creates new form Transaksi
+     * Creates new form TransaksiView
      */
-    public Transaksi() {
+    public TransaksiView() {
         initComponents();
     }
 
