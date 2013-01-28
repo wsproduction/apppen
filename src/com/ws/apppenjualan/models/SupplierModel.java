@@ -92,12 +92,6 @@ public class SupplierModel {
         }
     }
 
-    protected void fireOnActived(List<SupplierEntity> list) {
-        if (supplierListener != null) {
-            supplierListener.onActived(list);
-        }
-    }
-
     public void resetForm() {
         setSupplierName("");
         setSupplierAddress("");
@@ -119,8 +113,4 @@ public class SupplierModel {
         fireOnInsert(entity);
     }
 
-    public void renderTableModel() throws SupplierException {
-        SupplierDao dao = new SupplierInjection();
-        fireOnActived(dao.findAllSupplier());
-    }
 }

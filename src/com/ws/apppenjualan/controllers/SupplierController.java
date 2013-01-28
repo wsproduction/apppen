@@ -50,15 +50,5 @@ public class SupplierController {
             }
         }
     }
-
-    public void renderTableController(SupplierView view) {
-        try {
-            model.renderTableModel();
-        } catch (Throwable t) {
-            JOptionPane.showMessageDialog(view, new Object[]{
-                        "Terjadi kesalahan di database dengan pesan : ",
-                        t.getMessage()
-                    });
-        }
-    }
+    
 }

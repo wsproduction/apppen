@@ -13,11 +13,11 @@ import com.ws.apppenjualan.service.entity.SupplierEntity;
 import com.ws.apppenjualan.service.error.SupplierException;
 import com.ws.apppenjualan.service.injection.SupplierInjection;
 import java.awt.CardLayout;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -43,7 +43,7 @@ public class SupplierView extends javax.swing.JPanel implements SupplierListener
 
         initComponents();
         cl = (CardLayout) panelProcessing.getLayout();
-        tableSupplier.setModel(tableModel);
+        //tableSupplier.setModel(tableModel);
     }
 
     public JTextField getTextEmail() {
@@ -87,11 +87,6 @@ public class SupplierView extends javax.swing.JPanel implements SupplierListener
     @Override
     public void onDelete() {
         throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void onActived(List<SupplierEntity> list) {
-        tableModel.setList(list);
     }
     
     public void loadDatabase() throws SupplierException {
@@ -229,7 +224,7 @@ public class SupplierView extends javax.swing.JPanel implements SupplierListener
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -649,8 +644,11 @@ public class SupplierView extends javax.swing.JPanel implements SupplierListener
 
     private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
         try {
-            //controller.renderTableController(this);
             loadDatabase();
+            tableSupplier.setModel(tableModel);
+            System.out.println(tableSupplier.getColumnCount());
+            TableColumn colom = tableSupplier.getColumnModel().getColumn(0);
+            colom.setPreferredWidth(200);
         } catch (SupplierException ex) {
             Logger.getLogger(SupplierView.class.getName()).log(Level.SEVERE, null, ex);
         }

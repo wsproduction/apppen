@@ -4,11 +4,7 @@
  */
 package com.ws.apppenjualan.views;
 
-import com.ws.apppenjualan.Main;
 import java.awt.CardLayout;
-import java.sql.Connection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

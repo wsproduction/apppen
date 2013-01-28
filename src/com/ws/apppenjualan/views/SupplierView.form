@@ -216,7 +216,7 @@
                         <Column editable="false" title="Alamat" type="java.lang.String"/>
                         <Column editable="false" title="Telepon" type="java.lang.String"/>
                         <Column editable="false" title="Email" type="java.lang.String"/>
-                        <Column editable="false" title="Update" type="java.lang.Object"/>
+                        <Column editable="false" title="Update" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="autoResizeMode" type="int" value="0"/>

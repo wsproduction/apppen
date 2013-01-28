@@ -6,7 +6,6 @@ package com.ws.apppenjualan.models.events;
 
 import com.ws.apppenjualan.models.SupplierModel;
 import com.ws.apppenjualan.service.entity.SupplierEntity;
-import java.util.List;
 
 /**
  *
@@ -19,8 +18,6 @@ public interface SupplierListener {
     public void onInsert(SupplierEntity entity);
 
     public void onUpdate(SupplierEntity entity);
-
-    public void onActived(List<SupplierEntity> list);
 
     public void onDelete();
 }
