@@ -7,7 +7,9 @@ package com.ws.apppenjualan.models.tables;
 import com.ws.apppenjualan.service.entity.SupplierEntity;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -16,6 +18,14 @@ import javax.swing.table.AbstractTableModel;
 public class SupplierTableModel extends AbstractTableModel {
 
     private List<SupplierEntity> list = new ArrayList<SupplierEntity>();
+    private ColumnData columns[] = {
+        new ColumnData("ID Supplier", 100, ColumnData.setAlign("CENTER")),
+        new ColumnData("Nama Supplier", 200, ColumnData.setAlign("LEFT")),
+        new ColumnData("Alamat", 200, ColumnData.setAlign("LEFT")),
+        new ColumnData("Telephon", 200, ColumnData.setAlign("LEFT")),
+        new ColumnData("Email", 200, ColumnData.setAlign("LEFT")),
+        new ColumnData("Update", 200, ColumnData.setAlign("LEFT"))
+    };
 
     public void setList(List<SupplierEntity> list) {
         this.list = list;
@@ -56,26 +66,31 @@ public class SupplierTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 6;
+        return columns.length;
     }
 
     @Override
     public String getColumnName(int column) {
-        switch (column) {
-            case 0:
-                return "ID Supplier";
-            case 1:
-                return "Nama Supplier";
-            case 2:
-                return "Alamat";
-            case 3:
-                return "Telephon";
-            case 4:
-                return "Email";
-            case 5:
-                return "Update";
-            default:
-                return null;
+        if (column >= 0 && column < getColumnCount()) {
+            return columns[column].cdTitle;
+        } else {
+            return null;
+        }
+    }
+
+    public int getColumnWidth(int column) {
+        if (column >= 0 && column < getColumnCount()) {
+            return columns[column].cdWidth;
+        } else {
+            return 0;
+        }
+    }
+
+    public DefaultTableCellRenderer getColumnAlignment(int column) {
+        if (column >= 0 && column < getColumnCount()) {
+            return columns[column].cdAlignment;
+        } else {
+            return null;
         }
     }
 

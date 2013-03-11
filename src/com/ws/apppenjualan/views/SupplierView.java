@@ -15,8 +15,10 @@ import com.ws.apppenjualan.service.injection.SupplierInjection;
 import java.awt.CardLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
 /**
@@ -24,7 +26,7 @@ import javax.swing.table.TableColumn;
  * @author WS
  */
 public class SupplierView extends javax.swing.JPanel implements SupplierListener {
-
+    
     private CardLayout cl;
     private SupplierModel model;
     private SupplierController controller;
@@ -33,39 +35,38 @@ public class SupplierView extends javax.swing.JPanel implements SupplierListener
     /**
      * Creates new form SupplierView
      */
-    public SupplierView(){
+    public SupplierView() {
         controller = new SupplierController();
         model = new SupplierModel();
         tableModel = new SupplierTableModel();
-
+        
         model.setSupplierListener(this);
         controller.setModel(model);
-
+        
         initComponents();
         cl = (CardLayout) panelProcessing.getLayout();
-        //tableSupplier.setModel(tableModel);
     }
-
+    
     public JTextField getTextEmail() {
         return textEmail;
     }
-
+    
     public JTextField getTextPhone() {
         return textPhone;
     }
-
+    
     public JTextField getTextSupplierAddress() {
         return textSupplierAddress;
     }
-
+    
     public JTextField getTextSupplierName() {
         return textSupplierName;
     }
-
+    
     public JTable getTabelSupplier() {
         return tableSupplier;
     }
-
+    
     @Override
     public void onChange(SupplierModel model) {
         textSupplierName.setText(model.getSupplierName());
@@ -73,17 +74,17 @@ public class SupplierView extends javax.swing.JPanel implements SupplierListener
         textPhone.setText(model.getSupplierPhone());
         textEmail.setText(model.getSupplierEmail());
     }
-
+    
     @Override
     public void onInsert(SupplierEntity entity) {
         tableModel.add(entity);
     }
-
+    
     @Override
     public void onUpdate(SupplierEntity entity) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    
     @Override
     public void onDelete() {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -94,6 +95,28 @@ public class SupplierView extends javax.swing.JPanel implements SupplierListener
         tableModel.setList(dao.findAllSupplier());
     }
     
+    public void renderTable() {
+        try {
+            loadDatabase();
+            tableSupplier.setModel(tableModel);
+            resizeColumn(tableSupplier);
+        } catch (SupplierException ex) {
+            Logger.getLogger(SupplierView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void resizeColumn(JTable table) {
+        TableColumn column;
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        
+        for (int idx = 0; idx < table.getColumnCount(); idx++) {
+            column = tableSupplier.getColumnModel().getColumn(idx);
+            column.setPreferredWidth(tableModel.getColumnWidth(idx));
+            //rightRenderer.setHorizontalAlignment(JLabel.CENTER);
+            column.setCellRenderer(tableModel.getColumnAlignment(idx));
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -629,31 +652,22 @@ public class SupplierView extends javax.swing.JPanel implements SupplierListener
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         cl.show(panelProcessing, "panelAdd");
     }//GEN-LAST:event_jButton5ActionPerformed
-
+    
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
         cl.show(panelProcessing, "panelList");
     }//GEN-LAST:event_buttonBackActionPerformed
-
+    
     private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
         controller.saveForm(this);
     }//GEN-LAST:event_buttonSaveActionPerformed
-
+    
     private void buttonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonResetActionPerformed
         controller.resetForm(this);
     }//GEN-LAST:event_buttonResetActionPerformed
-
+    
     private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
-        try {
-            loadDatabase();
-            tableSupplier.setModel(tableModel);
-            System.out.println(tableSupplier.getColumnCount());
-            TableColumn colom = tableSupplier.getColumnModel().getColumn(0);
-            colom.setPreferredWidth(200);
-        } catch (SupplierException ex) {
-            Logger.getLogger(SupplierView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        renderTable();
     }//GEN-LAST:event_buttonRefreshActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonDelete;
@@ -707,5 +721,4 @@ public class SupplierView extends javax.swing.JPanel implements SupplierListener
     private javax.swing.JTextField textSupplierAddress;
     private javax.swing.JTextField textSupplierName;
     // End of variables declaration//GEN-END:variables
-
 }

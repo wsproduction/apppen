@@ -21,8 +21,8 @@ public class LookAndFeel {
         try {
             //UIManager.setLookAndFeel(new SubstanceModerateLookAndFeel());// List Biru
             //UIManager.setLookAndFeel(new SubstanceSaharaLookAndFeel()); // List Hijau
-            //UIManager.setLookAndFeel(new SubstanceRavenGraphiteGlassLookAndFeel()); // Titik2 Coklat
-            UIManager.setLookAndFeel(new SubstanceRavenGraphiteLookAndFeel()); // Titik2 Coklat
+            UIManager.setLookAndFeel(new SubstanceRavenGraphiteGlassLookAndFeel()); // Titik2 Hitam
+            //UIManager.setLookAndFeel(new SubstanceRavenGraphiteLookAndFeel()); // Titik2 Coklat
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "kesalahan lookAndfeel " + ex);
         }
